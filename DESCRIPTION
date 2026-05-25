@@ -1,0 +1,13 @@
+Package: batchr
+Title: Submit R Notebooks as Slurm Batch Jobs
+Version: 0.0.0.9000
+Authors@R: 
+    person("Eric", "Knowles", , "edk202@nyu.edu", role = c("aut", "cre"))
+Description: Converts R, R Markdown, Quarto, and Jupyter notebooks into
+    standalone R scripts and submits them to a Slurm HPC cluster as batch
+    jobs. Supports selective code extraction via batch marker comments and
+    generates Slurm job scripts with configurable resource directives.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.0.0
