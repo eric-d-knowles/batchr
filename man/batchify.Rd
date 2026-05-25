@@ -4,14 +4,7 @@
 \alias{batchify}
 \title{Convert a notebook to an R script and submit it as a Slurm batch job}
 \usage{
-batchify(
-  notebook,
-  job_name,
-  run_root = "/scratch/edk202/runs",
-  mode = "exclude",
-  submit = FALSE,
-  ...
-)
+batchify(notebook, job_name, run_root, mode = "exclude", submit = FALSE, ...)
 }
 \arguments{
 \item{notebook}{Path to the notebook file (\code{.R}, \code{.Rmd}, \code{.qmd}, or
@@ -21,7 +14,7 @@ batchify(
 run subdirectory prefix.}
 
 \item{run_root}{Path to the root directory where timestamped run directories
-are created. Defaults to \code{"/scratch/edk202/runs"}.}
+are created. Must be supplied by the user.}
 
 \item{mode}{Passed to \code{\link[=capture_code]{capture_code()}}. Either \code{"exclude"} (default) to
 strip code between \code{batch:start}/\code{batch:end} markers, or \code{"include"} to

@@ -14,7 +14,7 @@ make_sbatch(
   array = NULL,
   r_args = character(0),
   env = "myR",
-  conda_sh = "/share/apps/anaconda3/2025.06/etc/profile.d/conda.sh",
+  conda_sh,
   log_dir = "logs",
   email = NULL,
   mail_type = "END,FAIL",
@@ -47,7 +47,8 @@ Defaults to \code{character(0)}.}
 \item{env}{Conda environment name to activate before running the script.
 Defaults to \code{"myR"}.}
 
-\item{conda_sh}{Path to the conda \code{conda.sh} initialisation script.}
+\item{conda_sh}{Path to the conda \code{conda.sh} initialisation script. Must be
+supplied by the user.}
 
 \item{log_dir}{Directory for Slurm log files. Created if it does not exist.
 Defaults to \code{"logs"}.}
