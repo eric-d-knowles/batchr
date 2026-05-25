@@ -1,4 +1,30 @@
+#' Convert a notebook to an R script and submit it as a Slurm batch job
+#'
+#' Creates a timestamped run directory, extracts R code from a notebook using
+#' [capture_code()], writes it to `job.R`, and generates (and optionally
+#' submits) a Slurm batch script via [make_sbatch()].
+#'
+#' @param notebook Path to the notebook file (`.R`, `.Rmd`, `.qmd`, or
+#'   `.ipynb`).
+#' @param job_name A short name for the Slurm job. Also used as the name of the
+#'   run subdirectory prefix.
+#' @param run_root Path to the root directory where timestamped run directories
+#'   are created. Defaults to `"/scratch/edk202/runs"`.
+#' @param mode Passed to [capture_code()]. Either `"exclude"` (default) to
+#'   strip code between `batch:start`/`batch:end` markers, or `"include"` to
+#'   keep only that code.
+#' @param submit Logical. If `TRUE`, the Slurm script is submitted immediately
+#'   via `sbatch`. Defaults to `FALSE`.
+#' @param ... Additional arguments passed to [make_sbatch()] (e.g., `cpus`,
+#'   `mem`, `time`, `email`).
+#'
+#' @return Invisibly returns the path to the generated `.slurm` script.
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' batchify("analysis.qmd", job_name = "my_analysis", cpus = 4, mem = "32G")
+#' }
 batchify <- function(notebook, job_name, run_root = "/scratch/edk202/runs",
                      mode = "exclude", submit = FALSE, ...) {
   run_dir <- file.path(run_root,

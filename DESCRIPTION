@@ -13,3 +13,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 URL: https://github.com/eric-d-knowles/batchr
 BugReports: https://github.com/eric-d-knowles/batchr/issues
+Imports: 
+    jsonlite,
+    knitr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

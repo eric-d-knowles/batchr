@@ -1,4 +1,43 @@
+#' Generate (and optionally submit) a Slurm batch script for an R job
+#'
+#' Writes a Slurm batch script that activates a conda environment and runs an R
+#' script via `Rscript`. Optionally submits the job immediately with `sbatch`.
+#'
+#' @param r_script Path to the R script to run. Must exist.
+#' @param job_name Slurm job name. Defaults to `"rjob"`.
+#' @param cpus Number of CPUs per task. Defaults to `8L`.
+#' @param mem Memory allocation string (e.g., `"64G"`). Defaults to `"64G"`.
+#' @param time Wall-time limit in `"HH:MM:SS"` format. Defaults to
+#'   `"12:00:00"`.
+#' @param partition Slurm partition name. If `NULL` (default), no
+#'   `--partition` directive is written.
+#' @param array Slurm array specification (e.g., `"0-9"`). If `NULL`
+#'   (default), no `--array` directive is written.
+#' @param r_args Character vector of additional arguments passed to `Rscript`.
+#'   Defaults to `character(0)`.
+#' @param env Conda environment name to activate before running the script.
+#'   Defaults to `"myR"`.
+#' @param conda_sh Path to the conda `conda.sh` initialisation script.
+#' @param log_dir Directory for Slurm log files. Created if it does not exist.
+#'   Defaults to `"logs"`.
+#' @param email Email address for Slurm notifications. If `NULL` (default), no
+#'   mail directives are written.
+#' @param mail_type Slurm mail event types. Defaults to `"END,FAIL"`.
+#' @param extra_sbatch Character vector of additional raw `#SBATCH` directives
+#'   to append.
+#' @param out_file Path for the generated `.slurm` script. Defaults to a file
+#'   named `<job_name>.slurm` in the same directory as `r_script`.
+#' @param submit Logical. If `TRUE`, submits the script via `sbatch`
+#'   immediately. Defaults to `FALSE`.
+#'
+#' @return Invisibly returns the path to the written `.slurm` file.
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' make_sbatch("job.R", job_name = "my_job", cpus = 4, mem = "32G",
+#'             email = "user@example.com", submit = TRUE)
+#' }
 make_sbatch <- function(
     r_script, job_name = "rjob", cpus = 8L, mem = "64G", time = "12:00:00",
     partition = NULL, array = NULL, r_args = character(0),
