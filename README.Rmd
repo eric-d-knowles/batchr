@@ -1,5 +1,31 @@
----
-output: github_document
+# ...existing code...---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```)  submit   = FALSE  mem      = "32G",  cpus     = 4,  conda_sh = "/path/to/conda.sh",  job_name = "my_job",  "job.R",make_sbatch(``` r# ...existing code...```)  submit   = TRUE  email    = "you@example.com",  time     = "12:00:00",  mem      = "64G",  cpus     = 8,  conda_sh = "/path/to/conda.sh",  run_root = "/scratch/user/runs",  job_name = "my_analysis",  "analysis.qmd",batchify(library(batchr)``` routput: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->

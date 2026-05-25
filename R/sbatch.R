@@ -17,7 +17,8 @@
 #'   Defaults to `character(0)`.
 #' @param env Conda environment name to activate before running the script.
 #'   Defaults to `"myR"`.
-#' @param conda_sh Path to the conda `conda.sh` initialisation script.
+#' @param conda_sh Path to the conda `conda.sh` initialisation script. Must be
+#'   supplied by the user.
 #' @param log_dir Directory for Slurm log files. Created if it does not exist.
 #'   Defaults to `"logs"`.
 #' @param email Email address for Slurm notifications. If `NULL` (default), no
@@ -41,7 +42,7 @@
 make_sbatch <- function(
     r_script, job_name = "rjob", cpus = 8L, mem = "64G", time = "12:00:00",
     partition = NULL, array = NULL, r_args = character(0),
-    env = "myR", conda_sh = "/share/apps/anaconda3/2025.06/etc/profile.d/conda.sh",
+    env = "myR", conda_sh,
     log_dir = "logs", email = NULL, mail_type = "END,FAIL",
     extra_sbatch = character(0), out_file = NULL, submit = FALSE) {
   stopifnot(file.exists(r_script))

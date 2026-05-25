@@ -1,6 +1,6 @@
 Package: batchr
 Title: Submit R Notebooks as Slurm Batch Jobs
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Eric", "Knowles", , "edk202@nyu.edu", role = c("aut", "cre"))
 Description: Converts R, R Markdown, Quarto, and Jupyter notebooks into
